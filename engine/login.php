@@ -1,15 +1,27 @@
 <?php
   session_start();
   include('connection.php');
+  require('validarlogin.php');
   $pdo = connection();
 
   $email = $_POST["email"];
-  $senha = $_POST["senha"];
+  $pass = $_POST["senha"];
+
+  $erro = campovazio($email);
+  if($erro = 0){
+    $erro =  "<script> alert('Campo e-mail vazio');window.location.href='./login.php'</script>";
+    return $erro;
+  }
+  $erro = campovazio($pass);
+  if($erro = 0){
+    $erro =  "<script> alert('Campo senha vazio');window.location.href='./login.php'</script>";
+    return $erro;
+  }
 
   $sql = "SELECT * FROM usuarios WHERE email = :email and senha = :senha";
   $sth = $pdo->prepare($sql);
   $sth->bindValue(':email', $email);
-  $sth->bindValue(':senha', $senha);
+  $sth->bindValue(':senha', $pass);
   $sth-> execute();
 
   if($sth->rowCount() == 1)

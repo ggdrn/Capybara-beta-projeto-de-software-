@@ -1,6 +1,6 @@
 <?php
 $fuck;
-  function($data){
+  function campovazio($data){
     if($data == ''){
       return $fuck = 0;
     }
