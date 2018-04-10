@@ -1,8 +1,7 @@
 <?php
-$fuck;
   function campovazio($data){
-    if($data == ''){
-      return $fuck = 0;
+    if($data == "" || $data == null){
+      return $data = 0;
     }
   }
 ?>

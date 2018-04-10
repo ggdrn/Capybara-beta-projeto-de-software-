@@ -5,17 +5,15 @@
   $pdo = connection();
 
   $email = $_POST["email"];
-  $pass = $_POST["senha"];
+  $pass = $_POST["pass"];
 
   $erro = campovazio($email);
-  if($erro = 0){
-    $erro =  "<script> alert('Campo e-mail vazio');window.location.href='./login.php'</script>";
-    return $erro;
+  if($erro == 0){
+    echo "<script> alert('Campo e-mail vazio');window.location.href='./login.php'</script>";
   }
   $erro = campovazio($pass);
-  if($erro = 0){
-    $erro =  "<script> alert('Campo senha vazio');window.location.href='./login.php'</script>";
-    return $erro;
+  if($erro == 0){
+    echo "<script> alert('Campo senha vazio');window.location.href='./login.php'</script>";
   }
 
   $sql = "SELECT * FROM usuarios WHERE email = :email and senha = :senha";

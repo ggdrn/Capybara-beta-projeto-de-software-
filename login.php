@@ -15,7 +15,7 @@ header ('Content-type: text/html; charset=ISO-8859-1');
 	<h1>Login</h1>
 	<form method="post" action="engine/login.php">
 		E-mail: <input type="e-mail" name="email"><br><br>
-		Senha: <input type="password" name="senha"><br><br>
+		Senha: <input type="password" name="pass"><br><br>
 		<input class="button button-s" type="submit" value='Enviar'></br><br>
 	</form>
 </div>
