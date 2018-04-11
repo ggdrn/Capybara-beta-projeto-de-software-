@@ -1,36 +1,48 @@
 <?php
   session_start();
   include('connection.php');
-  require('validarlogin.php');
+  include('validarlogin.php');
   $pdo = connection();
 
+  $submit = $_POST["submit"];
+
+  if(isset($_POST['submit'])){//confere se o usuário está tentando se logar
+        //armazena os dados informados pelo usuário
   $email = $_POST["email"];
   $pass = $_POST["pass"];
 
-  $erro = campovazio($email);
-  if($erro == 0){
-    echo "<script> alert('Campo e-mail vazio');window.location.href='./login.php'</script>";
+  $query = "SELECT * FROM usuarios WHERE senha = '$pass' OR email='$email'";
+  $sth = $pdo->prepare($query);
+  $sth-> execute();
+  $array = $sth->fetch(PDO::FETCH_BOTH);
+  
+  function RunValidations(){
+    campovazio($email);
+    campovazio($pass);
   }
-  $erro = campovazio($pass);
-  if($erro == 0){
-    echo "<script> alert('Campo senha vazio');window.location.href='./login.php'</script>";
-  }
-
-  $sql = "SELECT * FROM usuarios WHERE email = :email and senha = :senha";
+  $sql = "SELECT * FROM usuarios WHERE email = :email and senha = :pass";
   $sth = $pdo->prepare($sql);
   $sth->bindValue(':email', $email);
-  $sth->bindValue(':senha', $pass);
+  $sth->bindValue(':pass', $pass);
   $sth-> execute();
 
-  if($sth->rowCount() == 1)
-   {
-     echo "<script>alert('Logado Com Sucesso!')</script>";
+  if(!isset($array['email'])){
+      echo"<script language='javascript' type='text/javascript'>alert('E-mail ou senha invalidos');/*window.location.href='../login.php'*/</script>";
+  }
+/*
+  if($sth->rowCount() == 1){
+     echo "<script>alert('Logado Com Sucesso!');</script>";
      Header("Location: /Capybara/");
    }
-   else
-   {
-       echo "<script>alert('Usuarios Ou Senha Incorretos!');</script>";
+   else{
+       echo "<script>alert('Usuarios ou senha incorretos!');</script>";
        Header("Location: /Capybara/");
    }
+*/
+ }
+
+
+
+
 
 ?>
