@@ -6,43 +6,45 @@
 
   $submit = $_POST["submit"];
 
-  if(isset($_POST['submit'])){//confere se o usuário está tentando se logar
-        //armazena os dados informados pelo usuário
+  if(isset($submit)){//confere se o usuário está tentando se logar
+  //armazena os dados informados pelo usuário
   $email = $_POST["email"];
   $pass = $_POST["pass"];
 
-  $query = "SELECT * FROM usuarios WHERE senha = '$pass' OR email='$email'";
-  $sth = $pdo->prepare($query);
-  $sth-> execute();
-  $array = $sth->fetch(PDO::FETCH_BOTH);
-  
-  function RunValidations(){
-    campovazio($email);
-    campovazio($pass);
+  if(setdata($email)) {
+    echo "Campo vazio e-mail";
+    die();
   }
+
+  if(setdata($pass)) {
+    echo "Campo vazio senha";
+    die();
+  }
+
   $sql = "SELECT * FROM usuarios WHERE email = :email and senha = :pass";
   $sth = $pdo->prepare($sql);
   $sth->bindValue(':email', $email);
   $sth->bindValue(':pass', $pass);
   $sth-> execute();
 
-  if(!isset($array['email'])){
-      echo"<script language='javascript' type='text/javascript'>alert('E-mail ou senha invalidos');/*window.location.href='../login.php'*/</script>";
-  }
-/*
-  if($sth->rowCount() == 1){
-     echo "<script>alert('Logado Com Sucesso!');</script>";
-     Header("Location: /Capybara/");
-   }
-   else{
-       echo "<script>alert('Usuarios ou senha incorretos!');</script>";
-       Header("Location: /Capybara/");
-   }
-*/
+  if($sth->rowCount() == 1)
+    {
+      while($ln = $sth->fetch(PDO::FETCH_ASSOC))
+        {
+           $_SESSION['email'] = $ln['email'];
+           $_SESSION['cpf'] = $ln['cpf'];
+           $_SESSION['telefone'] = $ln['telefone'];
+           $_SESSION['pass'] = $ln['senha'];
+           $_SESSION['name'] = $ln['nome'];
+        };
+    echo "<script>alert('Logado Com Sucesso!');window.location.href='../';</script>";
+    //header('Location: ../index.php');
+    die();
+    }
+      echo "<script>alert('E-mail ou senha incorretos');window.location.href='../login.php';</script>";
+      //header('Location: ../login.php');
+      die();
+
  }
-
-
-
-
 
 ?>
