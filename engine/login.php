@@ -1,7 +1,7 @@
 <?php
   session_start();
   include('connection.php');
-  include('validarlogin.php');
+  include('validardados.php');
   $pdo = connection();
 
   $submit = $_POST["submit"];
