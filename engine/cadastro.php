@@ -31,6 +31,11 @@
       echo "Campo vazio cpf";
       die();
       }
+      // Verifica se o CPF é valido
+      if(validatecpf($cpf)) {
+        echo "cpf invalido";
+        die();
+        }
     if(setdata($telefone)) {
       echo "Campo vazio telefone";
       die();
@@ -49,11 +54,7 @@
       echo "As senhas não são as mesmas";
       die();
       }
-    // Verifica se o CPF é valido
-    if(validatecpf($cpf)) {
-      echo "cpf invalido";
-      die();
-      }
+
 
 
     $pdo = connection();

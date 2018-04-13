@@ -18,12 +18,12 @@
 
   function validatecpf($cpf){
     // Elimina possivel mascara
-   $cpf = ereg_replace('[^0-9]', '', $cpf);
+   $cpf = preg_replace('[^0-9]', '', $cpf);
    $cpf = str_pad($cpf, 11, '0', STR_PAD_LEFT);
 
    // Verifica se o numero de digitos informados é igual a 11
    if (strlen($cpf) != 11) {
-       return false;
+       return true;
    }
    // Verifica se nenhuma das sequências invalidas abaixo
    // foi digitada. Caso afirmativo, retorna falso
@@ -37,7 +37,7 @@
        $cpf == '77777777777' ||
        $cpf == '88888888888' ||
        $cpf == '99999999999') {
-       return false;
+       return true;
     // Calcula os digitos verificadores para verificar se o
     // CPF é válido
     } else {
@@ -49,11 +49,11 @@
            }
            $d = ((10 * $d) % 11) % 10;
            if ($cpf{$c} != $d) {
-               return false;
+               return true;
            }
        }
 
-       return true;
+       return false;
    }
   }
 

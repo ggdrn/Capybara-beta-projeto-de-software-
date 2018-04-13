@@ -28,7 +28,7 @@ header ('Content-type: text/html; charset=ISO-8859-1');
 			<span class='msg-erro msg-email'></span>
 		</div>
 		<div class="form-group">
-			CPF: <input type="number" id="cpf" name="cpf"><br><br>
+			CPF: <input type="number" id="cpf" name="cpf" maxlength="11"><br><br>
 			<span class='msg-erro msg-cpf'></span>
 		</div>
 		<div class="form-group">
