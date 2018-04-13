@@ -7,7 +7,7 @@ header ('Content-type: text/html; charset=ISO-8859-1');
 <head>
 <title>Capybara Cursos Online - Cadastro</title>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 <style type="text/css">
 	.msg-erro{ color: red; }
@@ -18,7 +18,7 @@ header ('Content-type: text/html; charset=ISO-8859-1');
 <body>
 <div>
 	<h1>Cadastro</h1>
-	<form method="post"  id="cadastro">
+	<form method="post"  id="cadastro" action="engine/cadastro.php">
 		<div class="form-group">
 			Nome: <input type="text" id="nome" name="nome"><br><br>
 			<span class='msg-erro msg-nome'></span>
@@ -36,13 +36,17 @@ header ('Content-type: text/html; charset=ISO-8859-1');
 			<span class='msg-erro msg-telefone'></span>
 		</div>
 		<div class="form-group">
-			Senha: <input type="password" id="senha" name="senha"><br><br>
+			Senha: <input type="password" id="senha" name="pass"><br><br>
 			<span class='msg-erro msg-senha'></span>
 		</div>
-		<input class="btn btn-primary" type="submit" value='Enviar'></br><br>
+		<div class="form-group">
+			Confirmar Senha: <input type="password" id="senha2" name="pass2"><br><br>
+			<span class='msg-erro msg-senha2'></span>
+		</div>
+		<input class="btn btn-primary" type="submit" value='Enviar' name="submit"></br><br>
 	</form>
 </div>
 
-<script type="text/javascript" src="javascript/validar.js"></script>
+<!--<script type="text/javascript" src="javascript/validar.js"></script>-->
 </body>
 </html>

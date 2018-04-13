@@ -12,6 +12,7 @@ function validaCadastro(evt){
 	var cpf = document.getElementById('cpf');
 	var telefone = document.getElementById('telefone');
 	var senha = document.getElementById('senha');
+	var senha2 = document.getElementById('senha2');
 	var filtro = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 	var contErro = 0;
 
@@ -74,7 +75,7 @@ function validaCadastro(evt){
 		caixa_senha.style.display = 'none';
 	}
 
-	/* Validação do campo repita a senha
+	Validação do campo repita a senha
 	caixa_senha2 = document.querySelector('.msg-senha2');
 	if(senha2.value == ""){
 		caixa_senha2.innerHTML = "Favor preencher o campo Repita a Senha";
@@ -88,13 +89,13 @@ function validaCadastro(evt){
 		caixa_senha2.style.display = 'none';
 	} */
 
-	/* Valida se a senha é igual ao campo repita a senha
+	 Valida se a senha é igual ao campo repita a senha
 	if(senha.value != "" && senha2.value != "" && senha.value != senha2.value){
 		caixa_senha2.innerHTML = "O campo Repita a Senha é diferente do campo Senha";
 		caixa_senha2.style.display = 'block';
 		contErro += 1;
 	}
-  */
+  
 
 	if(contErro > 0){
 		evt.preventDefault();
