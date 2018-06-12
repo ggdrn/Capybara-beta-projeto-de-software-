@@ -13,11 +13,6 @@
     $cpf = $_POST["cpf"];
     $telefone = $_POST["telefone"];
     // Verifica se os campos estão vazios
-    if(setdata($nome)) {
-      echo "Campo vazio nome";
-      die();
-      }
-
     if(setdata($email)) {
       echo "Campo vazio e-mail";
       die();
@@ -31,11 +26,6 @@
       echo "Campo vazio cpf";
       die();
       }
-      // Verifica se o CPF é valido
-      if(validatecpf($cpf)) {
-        echo "cpf invalido";
-        die();
-        }
     if(setdata($telefone)) {
       echo "Campo vazio telefone";
       die();
@@ -49,13 +39,36 @@
       die();
       }
     // fim do check dos campos vazios
+    // Verfifica se senha é menor que 6
+    if(limiteMinimo($pass)){
+      echo "Senha menor que 6 digitos";
+      die();
+    }
+    // Verfifica se a confirmação da senha é menor que 6
+    if(limiteMinimo($pass2)){
+      echo "Senha menor que 6 digitos";
+      die();
+    }
+    // Verfifica se a confirmação da senha é menor que 6
+    if(limiteMinimoNome($name)){
+      echo "Nome muito curto";
+      die();
+    }
     // Verifica se as senhas são iguais
     if(equaldata($pass,$pass2)) {
       echo "As senhas não são as mesmas";
       die();
       }
-
-
+    // Verifica se o CPF é valido
+    if(validatecpf($cpf)) {
+      echo "cpf invalido";
+      die();
+      }
+    // Verifica se o telefone é valido
+      if(validateTelefone($telefone)){
+        echo "telefone invalido";
+        die();
+      }
 
     $pdo = connection();
     $sql = 'INSERT INTO usuarios (nome, email, cpf, telefone, senha) VALUES (:nome, :email, :cpf, :telefone,:senha );';

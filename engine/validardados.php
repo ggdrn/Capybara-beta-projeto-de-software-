@@ -16,6 +16,21 @@
     }
   }
 
+  function limiteMinimo($data){
+    if (strlen($data) < 6){
+      return true;
+    } else{
+      return false;
+    }
+  }
+  function limiteMinimoNome($data){
+    if (strlen($data) < 2){
+      return true;
+    } else{
+      return false;
+    }
+  }
+
   function validatecpf($cpf){
     // Elimina possivel mascara
    $cpf = preg_replace('[^0-9]', '', $cpf);
@@ -56,5 +71,21 @@
        return false;
    }
   }
+  function validateTelefone($telefone){
+    if (preg_match('#^\(\d{2}\) (9|)[6789]\d{3}-\d{4}$#', $telefone) > 0) {
+     echo false;
+    } else {
+     echo true;
+   }
+
+  }
+  function isLogged(){
+		if(isset($_SESSION["email"]) AND ($_SESSION["email"]!="")){
+		return true;
+  }else{
+    return false;
+  }
+
+}
 
 ?>

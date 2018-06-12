@@ -26,6 +26,15 @@ function validaCadastro(evt){
 	}else{
 		caixa_nome.style.display = 'none';
 	}
+	/* Validação do campo nome limite de letras */
+	caixa_nome = document.querySelector('.msg-nome');
+	if(nome.value.length < 6){
+		caixa_nome.innerHTML = "Favor preencher um nome valido";
+		caixa_nome.style.display = 'block';
+		contErro += 1;
+	}else{
+		caixa_nome.style.display = 'none';
+	}
 
 	/* Validação do campo email */
 	caixa_email = document.querySelector('.msg-email');
@@ -75,7 +84,7 @@ function validaCadastro(evt){
 		caixa_senha.style.display = 'none';
 	}
 
-	Validação do campo repita a senha
+	//Validação do campo repita a senha
 	caixa_senha2 = document.querySelector('.msg-senha2');
 	if(senha2.value == ""){
 		caixa_senha2.innerHTML = "Favor preencher o campo Repita a Senha";
@@ -89,13 +98,13 @@ function validaCadastro(evt){
 		caixa_senha2.style.display = 'none';
 	} */
 
-	 Valida se a senha é igual ao campo repita a senha
+	 //Valida se a senha é igual ao campo repita a senha
 	if(senha.value != "" && senha2.value != "" && senha.value != senha2.value){
 		caixa_senha2.innerHTML = "O campo Repita a Senha é diferente do campo Senha";
 		caixa_senha2.style.display = 'block';
 		contErro += 1;
 	}
-  
+
 
 	if(contErro > 0){
 		evt.preventDefault();
